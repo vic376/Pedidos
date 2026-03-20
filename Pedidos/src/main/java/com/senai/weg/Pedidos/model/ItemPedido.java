@@ -1,6 +1,5 @@
 package com.senai.weg.Pedidos.model;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,30 +7,32 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.sql.Date;
-import java.util.List;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-@Table(name = "pedido")
-public class Pedido {
+@Table(name = "item_pedido")
+public class ItemPedido {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(nullable = false)
-    private Date dataPedido;
+    private String nomeProduto;
 
-    @OneToMany(mappedBy = "pedido")
-    private List<ItemPedido> itens;
+    @Column(nullable = false)
+    private int quantidade;
 
-    @PrePersist//notação do jpa, serve basicamente pra ganchar o negócio ants de salvar n banco
-    public void prePersist() {
-        this.dataPedido = new Date(System.currentTimeMillis());
-    }
+    @Column(nullable = false)
+    private double precoUnitario;
+
+    @ManyToOne
+    @JoinColumn(name = "id_pedido")
+    private Pedido pedido;
+
 
 
 }
