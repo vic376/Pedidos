@@ -24,7 +24,7 @@ public class Pedido {
     @Column(nullable = false)
     private Date dataPedido;
 
-    @PrePersist
+    @PrePersist//notação do jpa, serve basicamente pra ganchar o negócio ants de salvar n banco
     public void prePersist() {
         this.dataPedido = new Date(System.currentTimeMillis());
     }

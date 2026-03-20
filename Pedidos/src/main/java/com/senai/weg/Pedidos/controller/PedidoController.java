@@ -19,6 +19,7 @@ public class PedidoController {
     public Pedido criarPedido (@RequestBody Pedido pedido){
         return service.criarPedido(pedido);
     }
+
     @DeleteMapping("/{id}")
     public void apagarPedido(@PathVariable Long id){
         service.apagarPedido(id);
